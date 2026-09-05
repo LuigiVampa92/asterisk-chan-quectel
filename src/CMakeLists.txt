@@ -39,6 +39,10 @@ target_link_libraries(asterisk-chan-quectel PRIVATE
     Iconv::Iconv
 )
 
+# Asterisk loads some modules RTLD_GLOBAL, so their libraries' exports (libssh's channel_new via
+# libcurl) can shadow same-named functions here; bind intra-module calls at link time.
+target_link_options(asterisk-chan-quectel PRIVATE -Wl,-Bsymbolic-functions)
+
 target_include_directories(asterisk-chan-quectel PRIVATE
     ${CMAKE_BINARY_DIR}/generated
 )
