@@ -11,12 +11,15 @@ jobs:
       matrix:
         arch:
           - aarch64_generic
+          - aarch64_cortex-a53
+          - arm_cortex-a7_neon-vfpv4
+          - arm_cortex-a15_neon-vfpv4
           - mips_24kc
+          - mipsel_24kc
           - x86_64
         branch:
           - SNAPSHOT
           - openwrt-25.12
-          - openwrt-24.10
 
     steps:
       - name: checkout
